@@ -2,7 +2,11 @@ import React from 'react'
 
 function Settings() {
   return (
-    <div>Settings</div>
+    <div>
+        <a href="/pomodoro">Pomodoro</a>
+        <a href="/">home</a>
+        <h1>Settings</h1>
+        </div>
   )
 }
 
