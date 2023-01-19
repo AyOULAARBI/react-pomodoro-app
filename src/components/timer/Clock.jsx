@@ -1,19 +1,31 @@
+import {useState,useEffect} from 'react';
 import styled from "styled-components"
 
-function Clock() {
+function Clock({setPercentage}) {
+    let res = 1*60
+    const [time,setTime] = useState(res);
+    useEffect(()=>{
+        if(time>0){
+        let interv = setInterval(()=>{
+            setTime(time=> time-1)
+            setPercentage(()=>(time*100)/res)
+        },1000)
+        return ()=>clearInterval(interv);
+    }
+    },[time])
   return (
     <ClockContainer>
         <TimerText>
-            25:00
+            {Math.floor(time/60) <10? `0${Math.floor(time/60)}`:Math.floor(time/60)}:{time%60<10?`0${time%60}`:time%60}
         </TimerText>
         <BtnsContainer>
-        <Btn><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
+        <Btn><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
 </svg></Btn>
 <Btn>
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
 </Btn>

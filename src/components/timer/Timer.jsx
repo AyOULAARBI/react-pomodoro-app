@@ -1,12 +1,15 @@
 import styled from "styled-components"
 import Clock from "./Clock"
+import { useState } from "react"
+
 
 function Timer() {
+  const [curr,setCurr] = useState(100);
   return (
     <TimerContainer>
-        <OuterCerc>
+        <OuterCerc percentage={curr}>
             <InnerCerc>
-                <Clock/>
+                <Clock setPercentage={setCurr}/>
             </InnerCerc>
         </OuterCerc>
   
@@ -36,7 +39,7 @@ box-shadow: -50px -50px -150px rgba(158, 158, 158, 0.2),-50px -10px -100px rgba(
 `
 
 const OuterCerc = styled.div`
-background: conic-gradient(${(props)=> props.theme.colors.primary} 50%, transparent 10%);
+background: conic-gradient(${(props)=> props.theme.colors.primary} ${({percentage})=>percentage}%, transparent 10%);
 width:19rem;
 height:19rem;
 border-radius:50%;
