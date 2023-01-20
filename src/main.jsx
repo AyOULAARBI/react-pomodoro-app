@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import App from './App'
-import App2 from './App2';
+import App from './App';
 import { createGlobalStyle ,ThemeProvider} from 'styled-components';
-import { BrowserRouter } from 'react-router-dom'
+import StateProvider from './components/StateProvider';
+import { BrowserRouter } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -25,12 +26,15 @@ const theme = {
     bg: "#220045"
   },
 }
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme} >
-    <GlobalStyle/>
-      <App2 />
+      <ThemeProvider theme={theme} >
+        <GlobalStyle/>
+        <BrowserRouter>
+        <App />
+        </BrowserRouter>
       </ThemeProvider>
-  </React.StrictMode>
+
     
 )

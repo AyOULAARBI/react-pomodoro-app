@@ -1,14 +1,17 @@
 import styled,{ css }  from "styled-components";
-import { useState } from "react";
+import {useContext } from "react";
+import { StateContext } from "../StateProvider";
 
-
-
-function Tags({tags}) {
-  const [activeBtn,setActive] = useState()
+function Tags() {
+  const {fields,setCurrent,activeBtn,setActive} = useContext(StateContext)
+  const handleClick = (index,tag)=>{
+    setActive(index);
+    setCurrent(tag);
+  }
   return (
     <TagsContainer>
-        {tags.map((tag,index)=>
-        <Tag  color="cyan" isActive={activeBtn ===index} key={index} onClick={()=>setActive(index)}>{tag.type}</Tag>)}
+        {fields.map((tag,index)=>
+        <Tag  color="cyan" isActive={activeBtn ===index} key={index} onClick={()=>handleClick(index,tag)}>{tag.type}</Tag>)}
     </TagsContainer>
   )
 }
@@ -35,10 +38,9 @@ const Tag = styled.button`
   font-size:1.5rem;
   border:none;
   border-radius:1rem;
-  ${({isActive,color})=> 
+  ${({isActive})=> 
   isActive && css`
    background-color: ${props=>props.theme.colors.primary};
-   color:${color};
   `
 }
 }

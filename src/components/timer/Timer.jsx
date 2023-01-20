@@ -1,15 +1,16 @@
 import styled from "styled-components"
 import Clock from "./Clock"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { StateContext } from "../StateProvider"
 
 
 function Timer() {
-  const [curr,setCurr] = useState(100);
+  const {percentage} = useContext(StateContext)
   return (
     <TimerContainer>
-        <OuterCerc percentage={curr}>
+        <OuterCerc percentage={percentage}>
             <InnerCerc>
-                <Clock setPercentage={setCurr}/>
+                <Clock />
             </InnerCerc>
         </OuterCerc>
   
