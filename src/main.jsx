@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App'
 import App from './App';
 import { createGlobalStyle ,ThemeProvider} from 'styled-components';
-import StateProvider from './components/StateProvider';
 import { BrowserRouter } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
