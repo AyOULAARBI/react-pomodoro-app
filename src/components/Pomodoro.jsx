@@ -7,7 +7,6 @@ import { StateContext } from "./StateProvider";
 
 
 function Pomodoro() {
-      const {fields,current,setCurrent} = useContext(StateContext)
   return (
     <Container>
      <Title>Pomodoro</Title>
